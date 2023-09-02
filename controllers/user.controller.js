@@ -23,3 +23,20 @@ export const createUser = async (req, res) => {
         res.status(500).json({ message: 'no se creo usuario' })
     }
 }
+
+export const updateUser = async (req, res) => {
+    try {
+        const userRut = req.param.rut
+        const updateData = req.body
+
+        const updateUser = await User.findOneAndUpdate({ rut: userRut }, updateData, { new: true })
+
+        if (!updateUser) {
+            return res.status(404).json({ message: 'Usuario no encontrado. ' })
+        }
+        res.status(202).json({ message: `Usuario ${updateUser.nombre} ${updateUser.apellido} actualizado. ` })
+
+    } catch (error) {
+
+    }
+}
