@@ -8,9 +8,11 @@ export const getAllUsers = async (req, res) => {
         const allUsers = await User.find();
         res.status(200).json(allUsers)
     } catch (error) {
-        res.status(404).json({ message: 'no se encontraron los usuarios' })
+        res.status(404).json({ message: 'No se encontraron los usuarios.' })
     }
 }
+
+
 // Crear nuevo usuario
 export const createUser = async (req, res) => {
     try {
@@ -18,13 +20,14 @@ export const createUser = async (req, res) => {
 
         const user = new User(newUser)
         const saveUser = await user.save()
-        res.status(201).json({ message: `El usuario ${saveUser.nombre} , ${saveUser.apellido} se crearon` })
+        res.status(201).json({ message: `El usuario ${saveUser.nombre} , ${saveUser.apellido} se crearon.` })
 
     } catch (error) {
-        res.status(500).json({ message: 'no se creo usuario' })
+        res.status(500).json({ message: 'No se logro crear usuario.' })
     }
 }
 
+//Actualizar Usuario
 export const updateUser = async (req, res) => {
     try {
         const userRut = req.params.rut
@@ -42,6 +45,8 @@ export const updateUser = async (req, res) => {
     }
 }
 
+
+// Borrar Usuario
 export const deleteUserByRut = async (req, res) => {
     try {
         const userRut = req.params.rut
